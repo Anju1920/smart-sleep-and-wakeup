@@ -8,9 +8,12 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/test")
-def test():
-    return "Flask is working on Vercel!"
+@app.route("/health")
+def health():
+    return {
+        "status": "ok",
+        "message": "Activity Alert server is running"
+    }
 
 
 if __name__ == "__main__":
