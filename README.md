@@ -80,7 +80,7 @@ python main.py
 
 # Screenshots
 
-![Screenshot 1](open eyes.jpeg)
+![Screenshot 1](openeyes.jpeg)
 
 *Sleep mode is activated and the system plays relaxing sleep music while monitoring the user's eyes.*
 
@@ -88,9 +88,7 @@ python main.py
 
 *The system detects that the user's eyes are closed and continues the wake-up voice.*
 
-![Screenshot 3](screenshots/open_eyes.png)
 
-*The system detects that the user's eyes are open and stops the wake-up voice.*
 
 # Diagrams
 
