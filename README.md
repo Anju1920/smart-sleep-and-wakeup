@@ -1,436 +1,77 @@
-Smart Sleep & Wakeup – Activity Alert
+# Smart Sleep and Wake-Up System 😴⏰
 
-A real-time Activity Alert system that monitors eye activity and provides audio alerts when the user's eyes remain closed for a specified period.
 
-The project supports:
+## Basic Details
+### Team Name: Team Useless
 
-👁️ Real-time eye-state detection
-🎥 Webcam monitoring
-🔊 Voice 1 continuous alert
-🚨 Voice 2 emergency/repeated alert
-⏱️ 10-second eye-closed detection
-🌐 Flask web application
-☁️ Vercel deployment using browser-based camera and audio
-How It Works
 
-The activity detection follows this logic:
+### Team Members
+- Team Lead: Amurtha Kaimal - College of Engineering Alappuzha
+- Member 2: Anju M B - College of Engineering Alappuzha
 
-Eyes OPEN
-    ↓
-Voice 1 plays continuously
+### Project Description
+The **Smart Sleep and Wake-Up System** is a computer-vision-based project designed to make sleeping and waking up more interactive.
 
-Eyes CLOSED
-    ↓
-Voice 1 continues
-    ↓
-10 seconds
-    ↓
-Voice 1 stops
-    ↓
-Voice 2 plays continuously
+The system plays a relaxing song to help the user sleep and uses a webcam to monitor the user's eyes. At wake-up time, a wake-up voice is played repeatedly until the user opens their eyes.
 
-Eyes OPEN
-    ↓
-Voice 2 stops immediately
-    ↓
-Voice 1 starts again
+### The Problem (that doesn't exist)
+Sometimes people don't wake up even after hearing their alarm.
 
+So we decided to solve the extremely serious problem:
 
-If no face is detected, the system resets the eye-closed timer.
+**"What if my alarm is shouting at me, but my eyes are still closed?"** 😴😂
 
-Project Structure
-AL Activity Alert/
-│
-├── app.py
-├── activity_alert.py
-├── camera_test.py
-├── requirements.txt
-├── vercel.json
-├── README.md
-├── .gitignore
-│
-├── templates/
-│   └── index.html
-│
-└── static/
-    ├── voice1.mp3
-    └── voice2.mp3
+### The Solution (that nobody asked for)
+We created a smart alarm that doesn't simply make noise and give up.
 
-Important
+The system uses a webcam to detect the user's eye state. When it is time to wake up, the wake-up voice continues while the user's eyes remain closed.
 
-Do not commit virtual environments:
+Once the user opens their eyes, the system detects the change and stops the wake-up sound.
 
-venv/
-.venv/
+Because apparently, the alarm needs proof that you are actually awake. 👀😂
 
+## Technical Details
+### Technologies/Components Used
 
-They are excluded through .gitignore.
+For Software:
+- **Language:** Python
+- **Computer Vision:** OpenCV
+- **Face/Eye Detection:** MediaPipe
+- **Numerical Processing:** NumPy
+- **Audio Playback:** Pygame
+- **Development Tool:** Visual Studio Code
 
-Local Python Version
 
-The local Python version uses:
+### Implementation
+For Software:
 
-Python
-OpenCV
-MediaPipe
-Pygame
-Webcam
+# Installation
 
-The main detection program is:
+Install the required Python packages:
 
-activity_alert.py
+```bash
+pip install opencv-python
+pip install mediapipe
+pip install numpy
+pip install pygame
 
+#Run
+.venv\Scripts\python.exe activity_alert.py
 
-The webcam is accessed using:
+###Project Documentation
 
-cv2.VideoCapture(0)
+# Screenshots
 
-Requirements
+![The webcam detects that the user's eyes are open, indicating that the user is awake. The system recognizes the change in eye condition and stops the wake-up voice.](open eyes.jpeg)
 
-Recommended Python version:
+![The webcam detects that the user's eyes are closed. The system continues playing the wake-up voice until the user opens their eyes.](closeeye.jpeg)
+ 
+# Diagram
 
-Python 3.10 – 3.12
+### complete flow is:
 
+**Webcam → Eye Detection → Eyes Open → Voice 1 once**
 
-Create a virtual environment:
+**Webcam → Eye Detection → Eyes Closed → 10 seconds → Voice 2 repeats → Eyes Open → Voice 2 stops → Voice 1 once**
 
-python -m venv venv
 
-
-Activate it on Windows PowerShell:
-
-.\venv\Scripts\Activate.ps1
-
-
-If PowerShell blocks script execution, you can run the project directly without activation:
-
-.\venv\Scripts\python.exe activity_alert.py
-
-Install Dependencies
-
-Install the required packages:
-
-pip install -r requirements.txt
-
-
-For the local camera version, the requirements may include:
-
-opencv-python
-mediapipe
-pygame
-Flask
-
-Run Local Activity Detection
-
-Run:
-
-.\venv\Scripts\python.exe activity_alert.py
-
-
-The webcam window should open.
-
-Press:
-
-Q
-
-
-to stop the application.
-
-Flask Web Application
-
-The Flask application is:
-
-app.py
-
-
-Run:
-
-.\venv\Scripts\python.exe app.py
-
-
-Then open:
-
-http://127.0.0.1:5000
-
-
-The Flask application renders:
-
-templates/index.html
-
-Vercel Deployment
-
-The Vercel version uses a different architecture.
-
-The server cannot directly access the webcam connected to the user's computer.
-
-Therefore:
-
-Vercel
-   ↓
-Flask
-   ↓
-index.html
-   ↓
-Browser JavaScript
-   ↓
-User's webcam
-
-
-The browser handles:
-
-Webcam access
-Face/eye detection
-Audio playback
-
-The Flask application only serves the web page.
-
-Vercel Files
-app.py
-
-The Flask application provides the web routes.
-
-vercel.json
-
-Configures Flask as the Vercel Python function.
-
-requirements.txt
-
-Contains the Python packages required by the Vercel server.
-
-For the basic Vercel deployment:
-
-Flask==3.1.2
-
-templates/index.html
-
-Contains the browser interface and camera/eye-detection logic.
-
-static/
-
-Contains the audio files:
-
-static/
-├── voice1.mp3
-└── voice2.mp3
-
-Deploy to Vercel
-
-First, make sure Git is configured:
-
-git status
-
-
-Add the project files:
-
-git add app.py vercel.json requirements.txt templates/index.html static/ .gitignore
-
-
-Commit:
-
-git commit -m "Add Activity Alert web application"
-
-
-Push:
-
-git push origin HEAD:main
-
-
-Vercel can then automatically deploy the latest GitHub commit if the repository is connected to the Vercel project.
-
-Git Ignore
-
-The project should contain:
-
-venv/
-.venv/
-__pycache__/
-*.pyc
-
-
-This prevents the Python virtual environment from being uploaded to GitHub.
-
-Never commit files such as:
-
-venv/Lib/site-packages/
-venv/Scripts/
-.venv/
-
-
-Virtual environments can contain very large binary files and are not required for deployment.
-
-Camera
-Local Python
-
-The local application uses:
-
-cap = cv2.VideoCapture(0)
-
-
-If the default camera does not work, another camera index can be tested:
-
-cap = cv2.VideoCapture(1)
-
-
-or:
-
-cap = cv2.VideoCapture(2)
-
-Browser / Vercel
-
-The web version uses the browser camera:
-
-navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: false
-});
-
-
-The browser will ask the user for camera permission.
-
-Camera access generally requires a secure context such as HTTPS when deployed.
-
-Audio Logic
-
-The application uses two audio files:
-
-voice1.mp3
-voice2.mp3
-
-Voice 1
-
-Voice 1 plays repeatedly while the user's eyes are open and during the first 10 seconds of eye closure.
-
-Voice 2
-
-After the eyes remain closed for 10 seconds:
-
-Voice 1 → STOP
-Voice 2 → PLAY REPEATEDLY
-
-When Eyes Open
-
-When the user opens their eyes:
-
-Voice 2 → STOP IMMEDIATELY
-Voice 1 → PLAY REPEATEDLY
-
-Eye Detection
-
-The system calculates an eye aspect/ratio value from facial landmarks.
-
-The configured threshold is:
-
-CLOSED_THRESHOLD = 0.20
-
-
-When:
-
-Eye Ratio < 0.20
-
-
-the eyes are considered closed.
-
-The closed-eye timer is:
-
-CLOSED_TIME_LIMIT = 10
-
-
-Therefore, Voice 2 starts after approximately:
-
-10 seconds
-
-
-of continuous eye closure.
-
-Troubleshooting
-Camera does not open
-
-Test the camera separately:
-
-.\venv\Scripts\python.exe camera_test.py
-
-
-If the camera works in camera_test.py but not in the main program, check the camera index and application permissions.
-
-MediaPipe Error
-
-If you see:
-
-AttributeError:
-module 'mediapipe' has no attribute 'solutions'
-
-
-check that the correct virtual environment is being used:
-
-.\venv\Scripts\python.exe --version
-
-
-and:
-
-.\venv\Scripts\python.exe -c "import mediapipe; print(mediapipe.__file__)"
-
-Vercel 404
-
-Check:
-
-app.py
-vercel.json
-requirements.txt
-templates/index.html
-
-
-Make sure index.html is inside the templates directory.
-
-Vercel FUNCTION_INVOCATION_FAILED
-
-Do not initialize desktop hardware inside the Vercel Flask function.
-
-Avoid:
-
-cv2.VideoCapture(0)
-
-
-and:
-
-pygame.mixer.init()
-
-
-inside the deployed Flask server.
-
-Use browser JavaScript for the camera and audio.
-
-Vercel Requirements Error
-
-Make sure requirements.txt contains valid plain text, for example:
-
-Flask==3.1.2
-
-
-Do not upload the local venv or .venv directory.
-
-Technologies Used
-Python
-Flask
-OpenCV
-MediaPipe
-Pygame
-HTML
-CSS
-JavaScript
-Web Camera API
-Vercel
-GitHub
-Project Goal
-
-The goal of this project is to provide a real-time activity and alert system that can detect prolonged eye closure and provide escalating audio alerts.
-
-The system can be useful as a prototype for:
-
-Driver drowsiness monitoring
-Sleep detection
-Attention monitoring
-Activity monitoring
-Safety alert systems
-Author
-
-Developed as a Smart Sleep & Wakeup / Activity Alert project.
